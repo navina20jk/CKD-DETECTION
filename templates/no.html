@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="og:title" content="Kidney-Disease Prediction">
+  <meta name="author" content="Venkata Sreeram">
+  <meta name="og:image" content="static/logo1.png">
+  <meta name="Keywords" content="Flask, Machine Learning, Deep Learning, Artificial Intelligence, AI, ML,DL, Web Development">
+  <meta name="description" content="A Machine Learning and Deep Learning based webapp for Multiple Disease Prediction.">
+  <title>Kidney Disease Predictor</title>
+  <link rel="icon" href="{{ url_for('static', filename = 'logo1.png') }}" type="image/icon type">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer/">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <style>
+    /* Style for the dropdown container */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Style for the dropdown content (hidden by default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    /* Style for the dropdown links */
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Change color on hover */
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+  </style>
+
+  <script>
+    // Add JavaScript to toggle the display of dropdown content on click
+    document.addEventListener("DOMContentLoaded", function() {
+      var dropdown = document.querySelector('.dropdown');
+      dropdown.addEventListener('click', function() {
+        var dropdownContent = this.querySelector('.dropdown-content');
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark" style="background-color: black !important;">
+    <a style="text-decoration: none; color: white" href="{{ url_for('home') }}"><h1> KIDNEY DISEASE PREDICTION</h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a href="{{ url_for('home') }}" class="nav-link"><h3>Home</h3></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('kidneyPage') }}"><h3>Kidney-Disease</h3></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <main>
+    <div class="container-fluid" style="margin-bottom: 20px;">
+      <div class="jumbotron">
+        <h1 class="display-4">You have a Kidney Disease !
+        </h1>
+        <p class="lead">Proper Doctor Consultation Needed.</p>
+        <hr class="my-4">
+        <p>Please Consult the Doctor Immideately. It was too risky without consultation. Make sure of health in your diet.</p>
+        <p class="lead">
+          <div class="dropdown">
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <div class="dropdown-content">
+              <a href="https://www.google.com/maps?q=hospitals+near+me&sca_esv=583219155&sxsrf=AM9HkKm13j5mlBScO94W8YjMQlLUdnzCbw:1700190593585&iflsig=AO6bgOgAAAAAZVbnkRMmqgVQB7x0Hwuv2ImAjXEbykza&gs_lp=Egdnd3Mtd2l6Igpob3NwaXRhbHMgKgIIADILEAAYgAQYsQMYyQMyCxAAGIAEGIoFGJIDMgsQABiABBiKBRiSAzIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgARI4RdQAFjTDnAAeACQAQCYAc0BoAGWC6oBBTAuOS4xuAEDyAEA-AEBwgIEECMYJ8ICChAjGIAEGIoFGCfCAgoQABiABBiKBRhDwgIHEAAYigUYQ8ICCxAuGIAEGIoFGJECwgILEAAYgAQYigUYkQLCAgsQABiABBixAxiDAcICEBAuGIAEGIoFGMcBGNEDGEPCAg0QABiKBRixAxjJAxhDwgINEAAYgAQYigUYsQMYQ8ICDhAAGIAEGIoFGLEDGJECwgIKEAAYgAQYFBiHAg&um=1&ie=UTF-8&sa=X&ved=2ahUKEwiQv5zFh8qCAxXf3jgGHbcBC-8Q_AUoAnoECAUQBA">Salem</a>
+              <a href="https://www.google.com/maps?q=hospitals+near+me&sca_esv=583219155&sxsrf=AM9HkKm13j5mlBScO94W8YjMQlLUdnzCbw:1700190593585&iflsig=AO6bgOgAAAAAZVbnkRMmqgVQB7x0Hwuv2ImAjXEbykza&gs_lp=Egdnd3Mtd2l6Igpob3NwaXRhbHMgKgIIADILEAAYgAQYsQMYyQMyCxAAGIAEGIoFGJIDMgsQABiABBiKBRiSAzIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgARI4RdQAFjTDnAAeACQAQCYAc0BoAGWC6oBBTAuOS4xuAEDyAEA-AEBwgIEECMYJ8ICChAjGIAEGIoFGCfCAgoQABiABBiKBRhDwgIHEAAYigUYQ8ICCxAuGIAEGIoFGJECwgILEAAYgAQYigUYkQLCAgsQABiABBixAxiDAcICEBAuGIAEGIoFGMcBGNEDGEPCAg0QABiKBRixAxjJAxhDwgINEAAYgAQYigUYsQMYQ8ICDhAAGIAEGIoFGLEDGJECwgIKEAAYgAQYFBiHAg&um=1&ie=UTF-8&sa=X&ved=2ahUKEwiQv5zFh8qCAxXf3jgGHbcBC-8Q_AUoAnoECAUQBA">Dindigul</a>
+              <a href="https://www.google.com/maps?q=hospitals+near+me&sca_esv=583219155&sxsrf=AM9HkKm13j5mlBScO94W8YjMQlLUdnzCbw:1700190593585&iflsig=AO6bgOgAAAAAZVbnkRMmqgVQB7x0Hwuv2ImAjXEbykza&gs_lp=Egdnd3Mtd2l6Igpob3NwaXRhbHMgKgIIADILEAAYgAQYsQMYyQMyCxAAGIAEGIoFGJIDMgsQABiABBiKBRiSAzIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgARI4RdQAFjTDnAAeACQAQCYAc0BoAGWC6oBBTAuOS4xuAEDyAEA-AEBwgIEECMYJ8ICChAjGIAEGIoFGCfCAgoQABiABBiKBRhDwgIHEAAYigUYQ8ICCxAuGIAEGIoFGJECwgILEAAYgAQYigUYkQLCAgsQABiABBixAxiDAcICEBAuGIAEGIoFGMcBGNEDGEPCAg0QABiKBRixAxjJAxhDwgINEAAYgAQYigUYsQMYQ8ICDhAAGIAEGIoFGLEDGJECwgIKEAAYgAQYFBiHAg&um=1&ie=UTF-8&sa=X&ved=2ahUKEwiQv5zFh8qCAxXf3jgGHbcBC-8Q_AUoAnoECAUQBA">Coimbatore</a>
+              <a href="https://www.google.com/maps?q=hospitals+near+me&sca_esv=583219155&sxsrf=AM9HkKm13j5mlBScO94W8YjMQlLUdnzCbw:1700190593585&iflsig=AO6bgOgAAAAAZVbnkRMmqgVQB7x0Hwuv2ImAjXEbykza&gs_lp=Egdnd3Mtd2l6Igpob3NwaXRhbHMgKgIIADILEAAYgAQYsQMYyQMyCxAAGIAEGIoFGJIDMgsQABiABBiKBRiSAzIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgARI4RdQAFjTDnAAeACQAQCYAc0BoAGWC6oBBTAuOS4xuAEDyAEA-AEBwgIEECMYJ8ICChAjGIAEGIoFGCfCAgoQABiABBiKBRhDwgIHEAAYigUYQ8ICCxAuGIAEGIoFGJECwgILEAAYgAQYigUYkQLCAgsQABiABBixAxiDAcICEBAuGIAEGIoFGMcBGNEDGEPCAg0QABiKBRixAxjJAxhDwgINEAAYgAQYigUYsQMYQ8ICDhAAGIAEGIoFGLEDGJECwgIKEAAYgAQYFBiHAg&um=1&ie=UTF-8&sa=X&ved=2ahUKEwiQv5zFh8qCAxXf3jgGHbcBC-8Q_AUoAnoECAUQBA">Chennai</a>
+              <a href="https://www.google.com/maps?q=hospitals+near+me&sca_esv=583219155&sxsrf=AM9HkKm13j5mlBScO94W8YjMQlLUdnzCbw:1700190593585&iflsig=AO6bgOgAAAAAZVbnkRMmqgVQB7x0Hwuv2ImAjXEbykza&gs_lp=Egdnd3Mtd2l6Igpob3NwaXRhbHMgKgIIADILEAAYgAQYsQMYyQMyCxAAGIAEGIoFGJIDMgsQABiABBiKBRiSAzIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgARI4RdQAFjTDnAAeACQAQCYAc0BoAGWC6oBBTAuOS4xuAEDyAEA-AEBwgIEECMYJ8ICChAjGIAEGIoFGCfCAgoQABiABBiKBRhDwgIHEAAYigUYQ8ICCxAuGIAEGIoFGJECwgILEAAYgAQYigUYkQLCAgsQABiABBixAxiDAcICEBAuGIAEGIoFGMcBGNEDGEPCAg0QABiKBRixAxjJAxhDwgINEAAYgAQYigUYsQMYQ8ICDhAAGIAEGIoFGLEDGJECwgIKEAAYgAQYFBiHAg&um=1&ie=UTF-8&sa=X&ved=2ahUKEwiQv5zFh8qCAxXf3jgGHbcBC-8Q_AUoAnoECAUQBA">Bangalore</a>
+            </div>
+          </div>
+        </p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
